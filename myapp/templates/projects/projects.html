@@ -1,0 +1,18 @@
+{# projects.html #}
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'styles/index.css' %}">
+{% endblock %}
+
+
+<h1>Projects</h1>
+{% for project in projects %}
+    <div>
+        <h2>{{ project.name }}</h2>
+    </div>
+{% endfor %}
+{% endblock content %}

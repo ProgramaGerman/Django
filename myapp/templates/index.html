@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'styles/index.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="main-content">
+    <div class="welcome-card">
+        <img src="{% static 'LAG.png' %}" style="width: 60px; margin-bottom: 1rem;" alt="Logo">
+        <div class="welcome-title">{{ title }}</div>
+        <div class="welcome-desc">
+            ¡Bienvenido a tu proyecto Django!<br>
+            Este sitio está listo para comenzar a desarrollar aplicaciones web modernas.<br>
+            <span style="font-size:0.95em;color:#4dabf7;">Explora, aprende y crea algo increíble.</span>
+        </div>
+        <a href="#" class="welcome-btn">Empezar</a>
+    </div>
+</div>
+{% endblock content %}

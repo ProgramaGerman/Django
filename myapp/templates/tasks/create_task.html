@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html'%}
+
+
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'styles/task.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+<h1>Create a new task</h1>
+<form method="post">
+{% csrf_token %}
+{{form.as_p}}
+<button>save</button>
+</form>
+{% endblock content %}
