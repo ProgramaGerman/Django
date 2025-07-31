@@ -1,0 +1,71 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Agent: Read File",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/agent.py",
+                "read",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Agent: Move File",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/agent.py",
+                "move",
+                "${file}",
+                "${input:destinationPath}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Agent: Delete File",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/agent.py",
+                "delete",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "destinationPath",
+            "type": "promptString",
+            "description": "Enter the new path for the file",
+            "default": "${workspaceFolder}/new_file_name"
+        }
+    ]
+}
