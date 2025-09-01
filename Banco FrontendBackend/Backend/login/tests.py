@@ -1,6 +1,7 @@
 from django.test import TestCase
 from login.models import Login
 from login.checkLogin import create_user
+from django.contrib.auth.hashers import make_password, check_password
 
 class UserCreationTest(TestCase):
     def test_create_users_and_prevent_duplicates(self):
@@ -21,3 +22,13 @@ class UserCreationTest(TestCase):
 
         # Verificar que solo se hayan creado 2 usuarios en la base de datos
         self.assertEqual(Login.objects.count(), 2)
+
+class PasswordHashingTest(TestCase):
+    def test_password_hashing(self):
+        """
+        Verifica que las contrasenas se encripten correctamente.
+        """
+        password = "clave123"
+        hashed_password = make_password(password)
+        self.assertNotEqual(hashed_password, password)
+        self.assertTrue(check_password(password, hashed_password))
