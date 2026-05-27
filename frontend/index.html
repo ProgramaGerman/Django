@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexProject // Control Panel</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+
+    <!-- Auth Container -->
+    <div class="auth-container" id="auth-container">
+        <div class="auth-card glass">
+            <div class="auth-header">
+                <span class="logo-icon"><i class="fa-solid fa-cube"></i></span>
+                <h2>NexProject</h2>
+                <p id="auth-subtitle">Ingresa a tu panel de control</p>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-username">Usuario</label>
+                    <input type="text" id="login-username" required placeholder="Ej. german_g">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Contraseña</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                <p class="auth-toggle-text">¿No tienes cuenta? <a href="#" id="link-show-register">Regístrate aquí</a></p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form hidden">
+                <div class="form-group">
+                    <label for="register-username">Usuario</label>
+                    <input type="text" id="register-username" required placeholder="Ej. german_g">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Correo Electrónico (opcional)</label>
+                    <input type="email" id="register-email" placeholder="Ej. german@mail.com">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Contraseña</label>
+                    <input type="password" id="register-password" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirmar Contraseña</label>
+                    <input type="password" id="register-confirm-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                <p class="auth-toggle-text">¿Ya tienes cuenta? <a href="#" id="link-show-login">Inicia sesión</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard App Container -->
+    <div class="app-container hidden" id="app-container">
+        <!-- Sidebar / Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-cube"></i></span>
+                <span class="logo-text">NexProject</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="https://github.com/ProgramaGerman/Django" target="_blank" class="nav-item">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Repository</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-info">
+                        <span class="username" id="sidebar-username">-</span>
+                    </div>
+                    <button class="btn-logout" id="btn-logout" title="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+                <div class="status-indicator">
+                    <span class="dot pulse-green"></span>
+                    <span>API Connect</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top bar -->
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Dashboard de Proyectos</h1>
+                    <p>Gestiona y visualiza el portafolio de desarrollo.</p>
+                </div>
+                <button class="btn btn-primary" id="btn-open-add-modal">
+                    <i class="fa-solid fa-plus"></i> Nuevo Proyecto
+                </button>
+            </header>
+
+            <!-- Stats Bar -->
+            <section class="stats-grid">
+                <div class="stat-card glass">
+                    <div class="stat-icon purple"><i class="fa-solid fa-folder-open"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Proyectos</span>
+                        <h2 class="stat-value" id="stat-total-projects">-</h2>
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-icon blue"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Tecnologías Únicas</span>
+                        <h2 class="stat-value" id="stat-total-techs">-</h2>
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-icon pink"><i class="fa-solid fa-code-branch"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Estado de la Base</span>
+                        <h2 class="stat-value text-success" id="stat-db-status">Online</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search & Filters -->
+            <section class="filter-bar glass">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Buscar por título o tecnología...">
+                </div>
+                <div class="filter-actions">
+                    <button class="btn btn-secondary btn-icon" id="btn-refresh" title="Refrescar datos">
+                        <i class="fa-solid fa-rotate"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Projects Grid -->
+            <section class="projects-container">
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Skeleton loaders get inserted here dynamically by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Project Modal (Dialog) -->
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h3 id="modal-title">Nuevo Proyecto</h3>
+                <button class="btn-close" id="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="project-form" class="modal-form">
+                <input type="hidden" id="project-id">
+                <div class="form-group">
+                    <label for="form-title">Título del Proyecto</label>
+                    <input type="text" id="form-title" required placeholder="Ej. E-commerce Premium">
+                </div>
+                <div class="form-group">
+                    <label for="form-technology">Tecnología Principal</label>
+                    <input type="text" id="form-technology" required placeholder="Ej. React, Django, Python">
+                </div>
+                <div class="form-group">
+                    <label for="form-description">Descripción</label>
+                    <textarea id="form-description" rows="4" required placeholder="Describe brevemente de qué trata el proyecto y su funcionalidad principal..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-form">Guardar Proyecto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
